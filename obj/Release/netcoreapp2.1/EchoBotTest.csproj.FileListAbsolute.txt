@@ -1,0 +1,15 @@
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\appsettings.json
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\EchoBotTest.deps.json
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\EchoBotTest.runtimeconfig.json
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\EchoBotTest.runtimeconfig.dev.json
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\EchoBotTest.dll
+C:\Users\veronica.acuna\source\repos\EchoBotTest\bin\Release\netcoreapp2.1\EchoBotTest.pdb
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.csprojAssemblyReference.cache
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.csproj.CoreCompileInputs.cache
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.RazorAssemblyInfo.cache
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.RazorAssemblyInfo.cs
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.AssemblyInfoInputs.cache
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.AssemblyInfo.cs
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.RazorTargetAssemblyInfo.cache
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.dll
+C:\Users\veronica.acuna\source\repos\EchoBotTest\obj\Release\netcoreapp2.1\EchoBotTest.pdb
