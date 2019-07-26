@@ -41,19 +41,9 @@ namespace EchoBotTest.Dialogs
         }
 
         private static async Task<DialogTurnResult> TransportStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        {
-            //await SendWelcomeMessageAsync(stepContext, cancellationToken);
+        {            
             await stepContext.Context.SendActivityAsync(MessageFactory.Text("Bienvenido a Bot Crear Ticket Service"), cancellationToken);
-            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("Por favor ingresa tu nombre.") }, cancellationToken);
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-
-            //return await stepContext.PromptAsync(nameof(ChoicePrompt),
-            //    new PromptOptions
-            //    {
-            //        Prompt = MessageFactory.Text("Please enter your mode of transport."),
-            //        Choices = ChoiceFactory.ToChoices(new List<string> { "Car", "Bus", "Bicycle" }),
-            //    }, cancellationToken);
+            return await stepContext.PromptAsync(nameof(TextPrompt), new PromptOptions { Prompt = MessageFactory.Text("Por favor ingresa tu nombre.") }, cancellationToken);                   
 
         }
 
@@ -68,48 +58,13 @@ namespace EchoBotTest.Dialogs
         {
             stepContext.Values["mail"] = (string)stepContext.Result;
 
-            // We can send messages to the user at any point in the WaterfallStep.
+            //PARA ENVIAR UN MENSAJE AL USUARIO........
             await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Gracias "), cancellationToken);
-
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-            //return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
+                                    
             var msg = $"Tu mail es: {stepContext.Result} está correcto?";
             return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text(msg) }, cancellationToken);
         }
 
-        //private async Task<DialogTurnResult> AgeStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        //{
-        //    if ((bool)stepContext.Result)
-        //    {
-        //        // User said "yes" so we will be prompting for the age.
-        //        // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-        //        var promptOptions = new PromptOptions
-        //        {
-        //            Prompt = MessageFactory.Text("Please enter your age."),
-        //            RetryPrompt = MessageFactory.Text("The value entered must be greater than 0 and less than 150."),
-        //        };
-
-        //        return await stepContext.PromptAsync(nameof(NumberPrompt<int>), promptOptions, cancellationToken);
-        //    }
-        //    else
-        //    {
-        //        // User said "no" so we will skip the next step. Give -1 as the age.
-        //        return await stepContext.NextAsync(-1, cancellationToken);
-        //    }
-        //}
-
-        //private async Task<DialogTurnResult> ConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-        //{
-        //    stepContext.Values["age"] = (int)stepContext.Result;
-
-        //    var msg = (int)stepContext.Values["age"] == -1 ? "No age given." : $"I have your age as {stepContext.Values["age"]}.";
-
-        //    // We can send messages to the user at any point in the WaterfallStep.
-        //    await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
-
-        //    // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-        //    return await stepContext.PromptAsync(nameof(ConfirmPrompt), new PromptOptions { Prompt = MessageFactory.Text("Is this ok?") }, cancellationToken);
-        //}
 
         private async Task<DialogTurnResult> SummaryStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
@@ -118,33 +73,21 @@ namespace EchoBotTest.Dialogs
                 // Get the current profile object from user state.
                 var userProfile = await _userProfileAccessor.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
 
-                userProfile.Mail = (string)stepContext.Values["mail"];
+                userProfile.Mail = (string)stepContext.Values["mail"];                
                 
-                //userProfile.Mail2 = (int)stepContext.Values["age"];
-
                 var msg = $"Tu nombre es: {userProfile.Name} y tu mail es: {userProfile.Mail}.";
-                //if (userProfile.Age != -1)
-                //{
-                //    msg += $" And age as {userProfile.Age}.";
-                //}
+               
 
                 await stepContext.Context.SendActivityAsync(MessageFactory.Text(msg), cancellationToken);
             }
             else
             {
-                await stepContext.Context.SendActivityAsync(MessageFactory.Text("Thanks. Your profile will not be kept."), cancellationToken);
+                await stepContext.Context.SendActivityAsync(MessageFactory.Text("Los datos no serán guardados"), cancellationToken);
             }
 
-            // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is the end.
+            // ESTA PARTE INDICA EL FINAL DEL DIALOGO (ÚLTIMO INDICADO EN LA WATERFALL
             return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
-
-        
-
-        //private static Task<bool> AgePromptValidatorAsync(PromptValidatorContext<int> promptContext, CancellationToken cancellationToken)
-        //{
-        //    // This condition is our validation rule. You can also change the value at this point.
-        //    return Task.FromResult(promptContext.Recognized.Succeeded && promptContext.Recognized.Value > 0 && promptContext.Recognized.Value < 150);
-        //}
+                       
     }
 }
