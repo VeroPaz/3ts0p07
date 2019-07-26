@@ -145,21 +145,21 @@ namespace EchoBotTest.Bots
         //    }
         //}
 
-        private static async Task SendSuggestedActionsAsync(ITurnContext turnContext, CancellationToken cancellationToken)
-        {
-            var reply = MessageFactory.Text("Que desea realizar?");
+        //private static async Task SendSuggestedActionsAsync(ITurnContext turnContext, CancellationToken cancellationToken)
+        //{
+        //    var reply = MessageFactory.Text("Que desea realizar?");
                         
-            reply.SuggestedActions = new SuggestedActions()
-            {
-                Actions = new List<CardAction>()
-                    {
-                        new CardAction() { Title = "Red", Type = ActionTypes.ImBack, Value = "Red" },
-                        new CardAction() { Title = "Yellow", Type = ActionTypes.ImBack, Value = "Yellow" },
-                        new CardAction() { Title = "Blue", Type = ActionTypes.ImBack, Value = "Blue" },
-                    },
-            };
-            await turnContext.SendActivityAsync(reply, cancellationToken);
-        }
+        //    reply.SuggestedActions = new SuggestedActions()
+        //    {
+        //        Actions = new List<CardAction>()
+        //            {
+        //                new CardAction() { Title = "Red", Type = ActionTypes.ImBack, Value = "Red" },
+        //                new CardAction() { Title = "Yellow", Type = ActionTypes.ImBack, Value = "Yellow" },
+        //                new CardAction() { Title = "Blue", Type = ActionTypes.ImBack, Value = "Blue" },
+        //            },
+        //    };
+        //    await turnContext.SendActivityAsync(reply, cancellationToken);
+        //}
 
         //public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         //{//manejo de la actividad entrante
