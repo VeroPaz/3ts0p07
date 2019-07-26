@@ -12,6 +12,7 @@ using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EchoBotTest.Bots;
+using EchoBotTest.Dialogs;
 
 namespace EchoBotTest
 {
@@ -30,7 +31,7 @@ namespace EchoBotTest
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Create the Bot Framework Adapter with error handling enabled.
-           // services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>(); 
+            services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>(); 
 
             // Create the credential provider to be used with the Bot Framework Adapter.
             services.AddSingleton<ICredentialProvider, ConfigurationCredentialProvider>();
@@ -44,15 +45,16 @@ namespace EchoBotTest
             // Create the User state.
             services.AddSingleton<UserState>(); //estado del usuario
 
+            services.AddSingleton<UserProfileDialog>();
+
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, EchoBot>();          
-            
+            // services.AddTransient<IBot, EchoBot>();  
+            services.AddTransient<IBot, EchoBot<UserProfileDialog>>();
+
             // Create the Conversation state.
             services.AddSingleton<ConversationState>(); //estado de conversación
 
-            // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, EchoBot>();
-
+          
             // The Dialog that will be run by the bot.
             //services.AddSingleton<MainDialog>();
         }

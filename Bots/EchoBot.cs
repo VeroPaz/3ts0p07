@@ -41,6 +41,7 @@ namespace EchoBotTest.Bots
 
         public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
+          
             await base.OnTurnAsync(turnContext, cancellationToken);
 
             // Save any state changes that might have occured during the turn.
@@ -49,7 +50,8 @@ namespace EchoBotTest.Bots
         }
 
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
-        {
+        {            
+                        
             Logger.LogInformation("Running dialog with Message Activity.");
 
             // Run the Dialog with the new message Activity.
@@ -143,21 +145,21 @@ namespace EchoBotTest.Bots
         //    }
         //}
 
-        //private static async Task SendSuggestedActionsAsync(ITurnContext turnContext, CancellationToken cancellationToken)
-        //{
-        //    var reply = MessageFactory.Text("Que desea realizar?");
-
-        //    reply.SuggestedActions = new SuggestedActions()
-        //    {
-        //        Actions = new List<CardAction>()
-        //        {
-        //            new CardAction() { Title = "Red", Type = ActionTypes.ImBack, Value = "Red" },
-        //            new CardAction() { Title = "Yellow", Type = ActionTypes.ImBack, Value = "Yellow" },
-        //            new CardAction() { Title = "Blue", Type = ActionTypes.ImBack, Value = "Blue" },
-        //        },
-        //    };
-        //    await turnContext.SendActivityAsync(reply, cancellationToken);
-        //}
+        private static async Task SendSuggestedActionsAsync(ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            var reply = MessageFactory.Text("Que desea realizar?");
+                        
+            reply.SuggestedActions = new SuggestedActions()
+            {
+                Actions = new List<CardAction>()
+                    {
+                        new CardAction() { Title = "Red", Type = ActionTypes.ImBack, Value = "Red" },
+                        new CardAction() { Title = "Yellow", Type = ActionTypes.ImBack, Value = "Yellow" },
+                        new CardAction() { Title = "Blue", Type = ActionTypes.ImBack, Value = "Blue" },
+                    },
+            };
+            await turnContext.SendActivityAsync(reply, cancellationToken);
+        }
 
         //public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         //{//manejo de la actividad entrante
